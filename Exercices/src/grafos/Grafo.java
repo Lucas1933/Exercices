@@ -1,7 +1,10 @@
 package grafos;
 
+import java.util.Stack;
+
 public class Grafo {
 	public int matrizDeAdyacencia[][] = new int[4][4];
+	private Stack<Vertice> pila = new Stack<Vertice>();
 
 	public void addArista(Vertice origen, Vertice destino, int peso) {
 		Arista arista = new Arista(origen, destino, peso);
@@ -21,6 +24,20 @@ public class Grafo {
 			}
 			System.out.println();
 		}
+	}
+
+	public void recorrerDfs(Vertice inicial) {
+		Vertice v = inicial;
+		v.visitado = true;
+		pila.push(v);
+		for (int i = 0; i < this.matrizDeAdyacencia.length; i++) {
+			if (this.matrizDeAdyacencia[v.etiqueta][i] != 0) {
+				this.recorrerDfs(inicial);
+			}
+
+		}
+		System.out.println();
+
 	}
 
 	public static void main(String[] args) {
